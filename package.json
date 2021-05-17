@@ -1,0 +1,12 @@
+{
+  "name": "hardhat-soldoc",
+  "version": "0.1.0",
+  "description": "Markdown documentation generator for Hardhat.",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "hardhat": "^2.3.0",
+    "source-map-loader": "^2.0.1"
+  }
+}

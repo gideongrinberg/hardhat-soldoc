@@ -1,0 +1,43 @@
+# {{ contract.name }}
+
+**Source:** {{ contract.src }}
+**Deployed Address:** TODO
+
+{% if contract.ctor != nil%}
+
+| **constructor nonpayable ()**|
+| ----------- |
+{% if contract.ctor.inputs != nil %}
+**Parameters:**
+{% for param in contract.ctor.inputs %}
+`{{ param.type }}` **param.name** {%if param.desc != nil %}: {{param.desc}} {%endif%}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+{% if contract.fallback != nil%}
+
+| **fallback payable ()**|
+| ----------- |
+{% if contract.fallback.inputs != nil %}
+**Parameters:**
+{% for param in contract.fallback.inputs %}
+`{{ param.type }}` **param.name** {%if param.desc != nil %}: {{param.desc}} {%endif%}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+## Methods
+{% for method in contract.methods %}
+| **{{method.name}} {{method.stateMutability}} {% if method.payable%}payable {% endif %} ()**|
+| ----------- |
+{% if method.inputs != nil %}
+**Parameters:**
+{% for param in method.inputs %}
+`{{ param.type }}` **param.name** {%if param.desc != nil %}: {{param.desc}} {%endif%}
+{% endfor %}
+**Returns:**
+{%if method.return == true%}  {{`method.returnType`: **method.returnValue**}} {%else%}None{%endif%}
+{% endif %}
+{{ method.details }}
+{% endfor %}
